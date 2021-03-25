@@ -1,0 +1,5 @@
+<?php
+
+$MESS['CONTACT_FORMS_TAB_SPAM_PROTECTION'] = 'Защита от спама';
+$MESS['CONTACT_FORMS_PARAM_CAPTCHA_ENABLED_TEXT'] = 'Использовать каптчу';
+$MESS['CONTACT_FORMS_PARAM_CAPTCHA_TYPE_TEXT'] = 'Тип каптчи';
