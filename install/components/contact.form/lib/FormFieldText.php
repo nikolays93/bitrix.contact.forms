@@ -17,8 +17,7 @@ class FormFieldText extends FormField implements iFormField
 			'#CURRENT_PAGE#' => $APPLICATION->GetCurPage(),
 		];
 
-		$this->obAttributes->add([
-			'value' => $this->getValue(),
+		$this->addAttribute([
 			'type' => $this->getFieldType(),
 			'placeholder' => $this->arProperty["DEFAULT_VALUE"] ?: '',
 		]);
@@ -40,6 +39,7 @@ class FormFieldText extends FormField implements iFormField
 	{
 		$this->value = str_replace(array_keys($this->arVariables),
 			$this->arVariables, $valueRequest);
+		$this->addAttribute('value', $this->value);
 	}
 
 	public function validate(): bool

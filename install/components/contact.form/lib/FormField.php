@@ -14,6 +14,16 @@ abstract class FormField implements iFormField
 		$this->obAttributes = new FormAttributes($this);
 	}
 
+	public function addAttribute($key, $value = null)
+	{
+		$this->obAttributes->add($key, $value);
+	}
+
+	public function pushAttribute($key, $value = null)
+	{
+		$this->obAttributes->push($key, $value);
+	}
+
 	/**
 	 * Getters
 	 * ********************************************************************** */
