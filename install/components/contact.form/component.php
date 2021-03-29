@@ -13,9 +13,9 @@ defined("B_PROLOG_INCLUDED") or exit();
 use Bitrix\Main\Loader;
 use Bitrix\Iblock;
 use Bitrix\Main\Application;
+use Bitrix\Main\Config\Option;
 use Bitrix\Main\Mail\Event;
 use Bitrix\Main\Localization\Loc;
-use Bitrix\Main\Security\SecurityException;
 
 global $APPLICATION;
 
@@ -35,13 +35,13 @@ require_once __DIR__ . '/lib/FormFieldText.php';
 
 require __DIR__ . '/functions.php';
 
+$arResult["MODULE_OPTIONS"] = array_merge([
+	'CAPTCHA_TYPE' => '',
+	'CAPTCHA_SECRET_KEY' => '',
+], Option::getForModule('contact.forms', SITE_ID));
+
 $arResult["PARAMS_HASH"] = md5(serialize($arParams) . $this->GetTemplateName());
 
-$arParams["MODULE_OPTIONS"] = [
-	'FORMS_USE_CAPTCHA' => 'N',
-	'CAPTCHA_TYPE' => '',
-	'RECAPTCHA_SECRET_KEY' => '',
-];
 $arResult['ERROR_MESSAGE'] = [];
 $arResult['SUCCESS_MESSAGE'] = [];
 
@@ -115,11 +115,10 @@ try {
 
 	if ($request->isPost() && $arResult["PARAMS_HASH"] === $request->getPost("PARAMS_HASH")) {
 		if (! check_bitrix_sessid()) {
-			throw new SecurityException(Loc::getMessage("CONTACT_FORM_ERROR_SESSION"));
+			throw new Exception(Loc::getMessage("CONTACT_FORM_ERROR_SESSION"));
 		}
 
 		/**
-		 * @todo validate captcha
 		 * @todo add files validation
 		 */
 		foreach($arResult["IBLOCK"]["PROPERTIES"] as $obProperty) {
@@ -128,6 +127,15 @@ try {
 
 			if (! $obProperty->validate()) {
 				array_push($arResult["ERROR_MESSAGE"], ...$obProperty->getErrors());
+			}
+		}
+
+		if ('BITRIX' === $arResult["MODULE_OPTIONS"]["CAPTCHA_TYPE"]) {
+			$captchaWord = $request->getPost("CAPTCHA_WORD");
+			$captchaSid = $request->getPost("CAPTCHA_SID");
+
+			if (empty($captchaSid) || ! $APPLICATION->CaptchaCheckCode($captchaWord, $captchaSid)) {
+				array_push($arResult["ERROR_MESSAGE"], Loc::getMessage("CONTACT_FORM_ERROR_WRONG_CAPTCHA"));
 			}
 		}
 
@@ -214,7 +222,7 @@ try {
 		}
 	}
 }
-catch (SecurityException $exception) {
+catch (Exception $exception) {
 	array_push($arResult["ERROR_MESSAGE"], $exception->getMessage());
 }
 

@@ -50,6 +50,19 @@ use Bitrix\Main\Localization\Loc;
     </div>
     <?php endif; ?>
 
+    <?php if ('BITRIX' === $arResult["MODULE_OPTIONS"]["CAPTCHA_TYPE"]): ?>
+    <div class="row align-items-end">
+        <div class="col-md-6 form-group">
+            <label for="CAPTCHA_WORD">Введите текст с картинки<span class="req" style="color: red">*</span></label>
+            <input class="form-control" type="text" name="CAPTCHA_WORD" id="CAPTCHA_WORD" maxlength="5" autocomplete="off"/>
+        </div>
+        <div class="col-md-6 form-group">
+            <img src="" width="180" height="40" alt="CAPTCHA" style="display:none;" />
+            <input type="hidden" name="CAPTCHA_SID" value="" class="CAPTCHA_SID" />
+        </div>
+    </div>
+    <?php endif; ?>
+
     <div class="row">
         <div class="col-md-12">
             <div class="form-group form-group_last">
