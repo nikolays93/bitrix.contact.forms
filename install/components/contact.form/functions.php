@@ -85,8 +85,8 @@ function formStoreEventType($eventName, $iblockName = '', $arProperties = []) {
 	$arEventFields = array(
 		"LID" => LANGUAGE_ID,
 		"EVENT_NAME" => $eventName,
-		"NAME" => GetMessage("FORM_MAIL_EVENT_TYPE_NAME") . ' "' . $iblockName . '"',
-		"DESCRIPTION" => implode("\n", $arFields) . "\n" . GetMessage("FORM_MAIL_EVENT_DESCRIPTION")
+		"NAME" => GetMessage("CONTACT_FORM_MAIL_EVENT_TYPE_NAME") . ' "' . $iblockName . '"',
+		"DESCRIPTION" => GetMessage("CONTACT_FORM_MAIL_EVENT_DESCRIPTION") . "\n" . implode("\n", $arFields),
 	);
 
 	return (new CEventType)->Add($arEventFields);
