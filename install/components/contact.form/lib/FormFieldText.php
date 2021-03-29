@@ -36,7 +36,7 @@ class FormFieldText extends FormField implements iFormField
 		return '<input ' . $this->obAttributes->render() . '>';
 	}
 
-	public function setValue($value = null)
+	public function setValue($valueRequest = null)
 	{
 		$this->value = str_replace(array_keys($this->arVariables),
 			$this->arVariables, $valueRequest);

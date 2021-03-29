@@ -4,7 +4,7 @@ abstract class FormField implements iFormField
 {
 	protected $arProperty = [];
 	protected $obAttributes;
-	private $value;
+	protected $value;
 
 	protected $arErrors = [];
 

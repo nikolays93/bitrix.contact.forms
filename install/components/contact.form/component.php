@@ -124,7 +124,7 @@ try {
 		 */
 		foreach($arResult["IBLOCK"]["PROPERTIES"] as $obProperty) {
 			$valueRequest = $request->getPost($obProperty->getPropertyCode());
-			$obProperty->setValue($value);
+			$obProperty->setValue($valueRequest);
 
 			if (! $obProperty->validate()) {
 				array_push($arResult["ERROR_MESSAGE"], ...$obProperty->getErrors());
