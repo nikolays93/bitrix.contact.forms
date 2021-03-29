@@ -27,14 +27,14 @@ while($arr = $rsIBlock->Fetch()) {
 $arComponentParameters = array(
 	"GROUPS" => array(
 		"PRIVACY_POLICY" => array(
-			"NAME" => Loc::getMessage("CONTACT_FORMS_PRIVACY_POLICY_NAME"),
+			"NAME" => Loc::getMessage("CONTACT_FORM_PRIVACY_POLICY_NAME"),
 			"SORT" => "410",
 		),
 	),
 	"PARAMETERS" => array(
 		"IBLOCK_TYPE" => Array(
 			"PARENT" => "DATA_SOURCE",
-			"NAME" => Loc::getMessage("CONTACT_FORMS_IBLOCK_TYPE"),
+			"NAME" => Loc::getMessage("CONTACT_FORM_IBLOCK_TYPE"),
 			"TYPE" => "LIST",
 			"VALUES" => $arIBlockType,
 			"ADDITIONAL_VALUES" => "N",
@@ -42,7 +42,7 @@ $arComponentParameters = array(
 		),
 		"IBLOCK_ID" => Array(
 			"PARENT" => "DATA_SOURCE",
-			"NAME" => Loc::getMessage("CONTACT_FORMS_IBLOCK_ID"),
+			"NAME" => Loc::getMessage("CONTACT_FORM_IBLOCK_ID"),
 			"TYPE" => "LIST",
 			"VALUES" => $arIBlock,
 			"ADDITIONAL_VALUES" => "Y",
@@ -50,21 +50,21 @@ $arComponentParameters = array(
 		),
 		"BUTTON_TITLE" => array(
 			"PARENT" => "VISUAL",
-			"NAME" => Loc::getMessage("CONTACT_FORMS_BUTTON_TITLE"),
+			"NAME" => Loc::getMessage("CONTACT_FORM_BUTTON_TITLE"),
 			"TYPE" => "STRING",
-			"DEFAULT" => Loc::getMessage("CONTACT_FORMS_BUTTON_TITLE_DEFAULT"),
+			"DEFAULT" => Loc::getMessage("CONTACT_FORM_BUTTON_TITLE_DEFAULT"),
 		),
 		"SHOW_PRIVACY_POLICY" => array(
 			"PARENT" => "PRIVACY_POLICY",
-			"NAME" => Loc::getMessage("CONTACT_FORMS_PRIVACY_POLICY_SHOW"),
+			"NAME" => Loc::getMessage("CONTACT_FORM_PRIVACY_POLICY_SHOW"),
 			"TYPE" => "CHECKBOX",
 			"DEFAULT" => "N",
 		),
 		"TEXT_PRIVACY_POLICY" => array(
 			"PARENT" => "PRIVACY_POLICY",
-			"NAME" => Loc::getMessage("CONTACT_FORMS_PRIVACY_POLICY_TEXT"),
+			"NAME" => Loc::getMessage("CONTACT_FORM_PRIVACY_POLICY_TEXT"),
 			"TYPE" => "STRING",
-			"DEFAULT" => Loc::getMessage("CONTACT_FORMS_PRIVACY_POLICY_TEXT_DEFAULT"),
+			"DEFAULT" => Loc::getMessage("CONTACT_FORM_PRIVACY_POLICY_TEXT_DEFAULT"),
 		),
 		"AJAX_MODE" => array(),
 		"CACHE_TIME"  => array(

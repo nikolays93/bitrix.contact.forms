@@ -107,10 +107,10 @@ function formStoreEventMessage($arProperties, $eventName) {
 		"EMAIL_FROM" => "#DEFAULT_EMAIL_FROM#",
 		"EMAIL_TO" => "#DEFAULT_EMAIL_FROM#",
 		"BCC" => "",
-		"SUBJECT" => GetMessage("FORM_MAIL_EVENT_MESSAGE_SUBJECT"),
+		"SUBJECT" => GetMessage("CONTACT_FORM_MAIL_EVENT_MESSAGE_SUBJECT"),
 		"BODY_TYPE" => "text",
-		"MESSAGE" => GetMessage("FORM_MAIL_EVENT_MESSAGE_MESSAGE_HEADER")
+		"MESSAGE" => GetMessage("CONTACT_FORM_MAIL_EVENT_MESSAGE_MESSAGE_HEADER")
 			. implode("\n", $arFields) . "\n"
-			. GetMessage("FORM_MAIL_EVENT_MESSAGE_MESSAGE_FOOTER")
+			. GetMessage("CONTACT_FORM_MAIL_EVENT_MESSAGE_MESSAGE_FOOTER")
 	]);
 }

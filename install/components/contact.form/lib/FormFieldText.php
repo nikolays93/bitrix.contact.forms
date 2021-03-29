@@ -45,14 +45,14 @@ class FormFieldText extends FormField implements iFormField
 	public function validate(): bool
 	{
 		if (empty($this->getValue()) && $this->isRequired()) {
-			array_push($this->arErrors, Loc::getMessage("FORM_ERROR_FIELD_REQUIRED", [
+			array_push($this->arErrors, Loc::getMessage("CONTACT_FORM_ERROR_FIELD_REQUIRED", [
 				"#FIELD#" => $this->getPropertyName(),
 			]));
 		}
 
 		if (! empty($this->getValue())) {
 			if ('email' === $this->getFieldType() && mb_strlen($this->getValue()) < 6) {
-				array_push($this->arErrors, Loc::getMessage("FORM_ERROR_FIELD_INVALID", [
+				array_push($this->arErrors, Loc::getMessage("CONTACT_FORM_ERROR_FIELD_INVALID", [
 					"#FIELD#" => $this->getPropertyName(),
 				]));
 			}
@@ -61,7 +61,7 @@ class FormFieldText extends FormField implements iFormField
 				$len = mb_strlen($this->getValue());
 
 				if ($len < 5 || $len > 20) {
-					array_push($this->arErrors, Loc::getMessage("FORM_ERROR_FIELD_INVALID", [
+					array_push($this->arErrors, Loc::getMessage("CONTACT_FORM_ERROR_FIELD_INVALID", [
 						"#FIELD#" => $this->getPropertyName(),
 					]));
 				}

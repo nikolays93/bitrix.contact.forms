@@ -47,11 +47,11 @@ $arResult['SUCCESS_MESSAGE'] = [];
 
 try {
 	if (0 >= $arParams["IBLOCK_ID"] = intval($arParams["IBLOCK_ID"])) {
-		throw new Exception(Loc::getMessage("FORM_ERROR_NO_IBLOCK_ID"));
+		throw new Exception(Loc::getMessage("CONTACT_FORM_ERROR_NO_IBLOCK_ID"));
 	}
 
 	if ('D' === CIBlock::GetPermission($arParams["IBLOCK_ID"])) {
-		throw new Exception(Loc::getMessage("FORM_ERROR_ACCESS_DENIED"));
+		throw new Exception(Loc::getMessage("CONTACT_FORM_ERROR_ACCESS_DENIED"));
 	}
 
 	$obCache = new CPHPCache();
@@ -67,12 +67,12 @@ try {
 		])->Fetch();
 
 		if (empty($arResult["IBLOCK"])) {
-			throw new Exception(Loc::getMessage("FORM_ERROR_IBLOCK_NOT_FOUND"));
+			throw new Exception(Loc::getMessage("CONTACT_FORM_ERROR_IBLOCK_NOT_FOUND"));
 		}
 
 		if (empty($arResult["IBLOCK"]['CODE'])) {
 			// 'Iblock code is required for event unique.'
-			throw new Exception(Loc::getMessage("FORM_ERROR_IBLOCK_CODE_REQUIRED"));
+			throw new Exception(Loc::getMessage("CONTACT_FORM_ERROR_IBLOCK_CODE_REQUIRED"));
 		}
 
 		/** @var string $arResult["ELEMENT_AREA_ID"]  area id by iblock code */
@@ -99,7 +99,7 @@ try {
 		}
 
 		if (empty($arResult["IBLOCK"]["PROPERTIES"])) {
-			throw new Exception(Loc::getMessage("FORM_ERROR_IBLOCK_PROPERTIES_NOT_FOUND"));
+			throw new Exception(Loc::getMessage("CONTACT_FORM_ERROR_IBLOCK_PROPERTIES_NOT_FOUND"));
 		}
 
 		$obCache->EndDataCache($arResult);
@@ -115,7 +115,7 @@ try {
 
 	if ($request->isPost() && $arResult["PARAMS_HASH"] === $request->getPost("PARAMS_HASH")) {
 		if (! check_bitrix_sessid()) {
-			throw new SecurityException(Loc::getMessage("FORM_ERROR_SESSION"));
+			throw new SecurityException(Loc::getMessage("CONTACT_FORM_ERROR_SESSION"));
 		}
 
 		/**
@@ -143,7 +143,7 @@ try {
 			$arFields = [
 				"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 				"ACTIVE" => "N",
-				"NAME" => Loc::getMessage("FORM_IBLOCK_ELEMENT_NAME") .
+				"NAME" => Loc::getMessage("CONTACT_FORM_IBLOCK_ELEMENT_NAME") .
 					ConvertTimeStamp(time(), "FULL", SITE_ID),
 				"PROPERTY_VALUES" => $arValues,
 			];
@@ -154,7 +154,7 @@ try {
 			 */
 			if ($resultID = $el->Add($arFields)) {
 				/** @var string Event code name */
-				$eventName = "FORM_" . $arResult["IBLOCK"]["CODE"];
+				$eventName = "CONTACT_FORM_" . $arResult["IBLOCK"]["CODE"];
 
 				/**
 				 * EMAIL Event type
@@ -196,7 +196,7 @@ try {
 				/**
 				 * @todo PREPARE LINKS TO FILES FOR EMAIL
 				 */
-				$arProperties["FORM_NAME"] = $arResult["IBLOCK"]["NAME"];
+				$arProperties["CONTACT_FORM_NAME"] = $arResult["IBLOCK"]["NAME"];
 
 				Event::send(array(
 					"EVENT_NAME" => $eventName,
@@ -207,9 +207,9 @@ try {
 				/**
 				 * @todo add param success message.
 				 */
-				$arResult["SUCCESS_MESSAGE"][] = Loc::getMessage("FORM_SUCCESS_MESSAGE") . "<br />";
+				$arResult["SUCCESS_MESSAGE"][] = Loc::getMessage("CONTACT_FORM_SUCCESS_MESSAGE") . "<br />";
 			} else {
-				$arResult["ERROR_MESSAGE"][] = Loc::getMessage("FORM_ERROR_MESSAGE")."<br />".$el->LAST_ERROR;
+				$arResult["ERROR_MESSAGE"][] = Loc::getMessage("CONTACT_FORM_ERROR_MESSAGE")."<br />".$el->LAST_ERROR;
 			}
 		}
 	}
