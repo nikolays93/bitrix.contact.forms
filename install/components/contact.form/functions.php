@@ -39,7 +39,7 @@ function getFormFieldObject($arProperty) {
 			return new FormFieldHidden($arProperty);
 		}
 		elseif ('HTML' === $userType) {
-			return new FormFieldTextarea($arProperty);
+			// return new FormFieldTextarea($arProperty);
 		} else {
 			return new FormFieldText($arProperty);
 		}
