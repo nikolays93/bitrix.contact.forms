@@ -33,7 +33,7 @@ class FormAttributes
             $this->arAttributes = array_merge($this->arAttributes, $key);
         } else {
             $this->arAttributes[$key] = $value;
-        }       
+        }
     }
 
     public function push($key, $value)

@@ -34,7 +34,6 @@ use Bitrix\Main\Localization\Loc;
             </div>
         </div>
     <?php endif;?>
-    <?php // echo '<pre>'; var_dump($arResult["IBLOCK"]["PROPERTIES"]); die(); ?>
 
     <?php if (!empty($arResult["IBLOCK"]["PROPERTIES"])) : ?>
         <?php foreach($arResult["IBLOCK"]["PROPERTIES"] as $obField): ?>
